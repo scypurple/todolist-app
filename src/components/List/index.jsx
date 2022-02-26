@@ -5,7 +5,7 @@ import './index.css'
 export default class List extends Component {
   render() {
     return (
-      <ul>
+      <ul className="todo-main">
         <Item />
         <Item />
         <Item />
