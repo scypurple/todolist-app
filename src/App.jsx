@@ -22,12 +22,18 @@ export default class App extends Component {
     this.setState({todos: newList});
   }
 
+  update = (id) => {
+    const {todos} = this.state;
+    const updateTodo = todos.map((todo) => {if(todo.id=== id) todo.checked = !todo.checked; return todo;});
+    this.setState({todos: updateTodo});
+  }
+
   render() {
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Add addItem={this.addItem} />
-          <List todos={this.state.todos} deleteItem={this.deleteItem} />
+          <List todos={this.state.todos} deleteItem={this.deleteItem} update={this.update}/>
           <Footer />
         </div>
       </div>

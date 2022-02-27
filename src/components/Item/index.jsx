@@ -3,8 +3,8 @@ import './index.css'
 
 export default class Item extends Component {
   state = {mouseIsEnter: false}  
-  handleChange = (event) => {
-    
+  handleCheck = (id) => {
+    return () => this.props.update(id);
   }
 
   handleMouse = (mouseIsEnter) => {
@@ -31,7 +31,7 @@ export default class Item extends Component {
       <label>
         <input type="checkbox" 
         checked={checked} 
-        onChange={this.handleChange}
+        onChange={this.handleCheck(id)}
         />
         <span>{content}</span>
       </label>
