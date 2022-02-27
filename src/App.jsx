@@ -16,12 +16,18 @@ export default class App extends Component {
     this.setState({todos: [todo, ...todos]})
   }
 
+  deleteItem = (id) => {
+    const {todos} = this.state;
+    const newList = todos.filter(todo => todo.id !== id)
+    this.setState({todos: newList});
+  }
+
   render() {
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Add addItem={this.addItem} />
-          <List todos={this.state.todos} />
+          <List todos={this.state.todos} deleteItem={this.deleteItem} />
           <Footer />
         </div>
       </div>

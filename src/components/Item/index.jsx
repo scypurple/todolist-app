@@ -2,21 +2,43 @@ import React, { Component } from 'react'
 import './index.css'
 
 export default class Item extends Component {
-  
+  state = {mouseIsEnter: false}  
   handleChange = (event) => {
-  
+    
   }
 
+  handleMouse = (mouseIsEnter) => {
+    return () => this.setState({mouseIsEnter});
+  }
+
+  handleDelete = (id) => {
+    return () => {
+      if(window.confirm("delete?")) {
+        this.props.deleteItem(id);
+      }
+  }
+}
+
   render() {
-    const {todo} = this.props;
+    const {id, content, checked} = this.props.todo;
+    const {mouseIsEnter} = this.state;
     return (
-      <li>
+      <li 
+      onMouseEnter={this.handleMouse(true)}
+      onMouseLeave={this.handleMouse(false)}
+      className={mouseIsEnter? 'active': ''}
+      >
       <label>
-        <input type="checkbox" checked={todo.checked} onChange={this.handleChange} />
-        <span>{todo.content}</span>
+        <input type="checkbox" 
+        checked={checked} 
+        onChange={this.handleChange}
+        />
+        <span>{content}</span>
       </label>
       <button 
         className="btn btn-danger" 
+        style={{display: mouseIsEnter? 'block' : 'none' }}
+        onClick={this.handleDelete(id)}
       >删除</button>
     </li>
     )
