@@ -34,7 +34,7 @@ export default class App extends Component {
         <div className="todo-wrap">
           <Add addItem={this.addItem} />
           <List todos={this.state.todos} deleteItem={this.deleteItem} update={this.update}/>
-          <Footer />
+          <Footer todos={this.state.todos} />
         </div>
       </div>
     )
